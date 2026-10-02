@@ -7,14 +7,14 @@
 | CIF | 5665609 |
 | Brand | RAPEL |
 | Status | activ |
-| Location | Str. PRINCIPALĂ, 1, Sat Răhău, Municipiul Sebeş, Alba |
+| Location | JUD. ALBA, SAT RĂHĂU MUN. SEBEŞ, STR. PRINCIPALA, NR.1 |
 | Website | [https://www.rapel.biz](https://www.rapel.biz) |
 | Careers | [https://www.rapel.biz](https://www.rapel.biz) |
-| Last Scraped | 2026-07-26 |
+| Last Scraped | 2026-10-02 |
 
 ## Current Job Listings (4)
 
-_Generated: 2026-07-26T08:22:54.744Z_
+_Generated: 2026-10-02T23:31:37.970Z_
 
 ### Muncitor Necalificat La Asamblarea, Montarea Pieselor
 
