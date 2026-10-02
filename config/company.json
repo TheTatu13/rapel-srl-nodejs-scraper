@@ -6,5 +6,5 @@
   "careerUrl": "https://www.rapel.biz",
   "apiBase": "https://www.jobrapid.ro",
   "defaultLocation": "Răhău",
-  "scraperFile": "https://raw.githubusercontent.com/sebiboga/rapel-srl-nodejs-scraper/main/.github/workflows/scrape.yml"
+  "scraperFile": "https://raw.githubusercontent.com/TheTatu13/rapel-srl-nodejs-scraper/main/.github/workflows/scrape.yml"
 }
