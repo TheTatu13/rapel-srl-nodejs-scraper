@@ -4,7 +4,7 @@ Thank you for your interest in contributing to the RAPEL SRL scraper!
 
 ## 📐 This Is a Derived Scraper
 
-This repo is a **derived scraper** generated from the [epam-systems-international-srl-nodejs-scraper](https://github.com/sebiboga/epam-systems-international-srl-nodejs-scraper) template. The template is the canonical reference for all scrapers in the peviitor.ro ecosystem.
+This repo is a **derived scraper** generated from the [epam-systems-international-srl-nodejs-scraper](https://github.com/peviitor-scrapers/epam-systems-international-srl-nodejs-scraper) template. The template is the canonical reference for all scrapers in the peviitor.ro ecosystem.
 
 ### What's different from the template
 
@@ -16,7 +16,7 @@ This repo is a **derived scraper** generated from the [epam-systems-internationa
 
 ```bash
 # Clone
-git clone https://github.com/sebiboga/rapel-srl-nodejs-scraper.git
+git clone https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper.git
 
 # Install dependencies
 npm install
@@ -34,7 +34,7 @@ npm test
 
 ## Reporting Issues
 
-Open a [GitHub Issue](https://github.com/sebiboga/rapel-srl-nodejs-scraper/issues) with:
+Open a [GitHub Issue](https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper/issues) with:
 - Clear description of the problem
 - Steps to reproduce
 - Expected vs actual behavior

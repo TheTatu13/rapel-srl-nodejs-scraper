@@ -1,14 +1,14 @@
 # job_seeker_ro_spider — RAPEL SRL Romania Scraper
 
-[![WebScraper RAPEL to Peviitor](https://github.com/TheTatu13/rapel-srl-nodejs-scraper/actions/workflows/scrape.yml/badge.svg)](https://github.com/TheTatu13/rapel-srl-nodejs-scraper/actions/workflows/scrape.yml)
-[![Automation Tests](https://github.com/TheTatu13/rapel-srl-nodejs-scraper/actions/workflows/test.yml/badge.svg)](https://github.com/TheTatu13/rapel-srl-nodejs-scraper/actions/workflows/test.yml)
+[![WebScraper RAPEL to Peviitor](https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper/actions/workflows/scrape.yml/badge.svg)](https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper/actions/workflows/scrape.yml)
+[![Automation Tests](https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper/actions/workflows/test.yml/badge.svg)](https://github.com/peviitor-scrapers/rapel-srl-nodejs-scraper/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![JavaScript](https://img.shields.io/badge/javascript-ESM-F7DF1E?logo=javascript&logoColor=black)](https://ecma-international.org/)
 [![Node.js](https://img.shields.io/badge/node-24-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
 **job_seeker_ro_spider** — un scraper pentru job-urile RAPEL SRL din România. Extrage anunțurile de pe [jobRapid.ro](https://www.jobrapid.ro/) și le publică în [peviitor.ro](https://peviitor.ro) prin API-ul SOLR.
 
-> **Derivat din template-ul EPAM.** Acest scraper a fost generat din [epam-systems-international-srl-nodejs-scraper](https://github.com/TheTatu13/epam-systems-international-srl-nodejs-scraper) — șablonul de referință pentru toate scraper-ele Node.js din ecosistemul peviitor.ro.
+> **Derivat din template-ul EPAM.** Acest scraper a fost generat din [epam-systems-international-srl-nodejs-scraper](https://github.com/peviitor-scrapers/epam-systems-international-srl-nodejs-scraper) — șablonul de referință pentru toate scraper-ele Node.js din ecosistemul peviitor.ro.
 
 ## Overview
 

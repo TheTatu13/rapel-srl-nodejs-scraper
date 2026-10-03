@@ -22,7 +22,7 @@ job_seeker_ro_spider
 3. **Scrape-uiește job-urile** — extrage lista completă de job-uri de pe jobRapid.ro via HTML scraping cu cheerio
 4. **Transformă datele** — normalizează locațiile (doar orașe românești), tag-urile (lowercase), workmode-ul (remote/on-site/hybrid)
 5. **Stochează în SOLR** — upsert în `job` core (job-urile) și `company` core (datele companiei cu adresa completă)
-6. **Generează docs/jobs.md** — fișier markdown cu informații companie + toate job-urile curente, publicat pe [GitHub Pages](https://thetatu13.github.io/rapel-srl-nodejs-scraper/jobs.md)
+6. **Generează docs/jobs.md** — fișier markdown cu informații companie + toate job-urile curente, publicat pe [GitHub Pages](https://peviitor-scrapers.github.io/rapel-srl-nodejs-scraper/jobs.md)
 
 ## Structură proiect
 
@@ -79,4 +79,4 @@ npm run test:e2e
 
 Testele SOLR folosesc `itIfSolr` — se auto-skip dacă variabila `SOLR_AUTH` nu e setată.
 
-> **Derivat din** [epam-systems-international-srl-nodejs-scraper](https://github.com/TheTatu13/epam-systems-international-srl-nodejs-scraper) — template-ul de referință pentru scraper-ele Node.js din ecosistemul peviitor.ro.
+> **Derivat din** [epam-systems-international-srl-nodejs-scraper](https://github.com/peviitor-scrapers/epam-systems-international-srl-nodejs-scraper) — template-ul de referință pentru scraper-ele Node.js din ecosistemul peviitor.ro.

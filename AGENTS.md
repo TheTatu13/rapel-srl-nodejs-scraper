@@ -4,7 +4,7 @@
 RAPEL scraper for peviitor.ro (Node.js, ESM, Jest)
 
 ## 📐 This Repo Is a Derived Scraper
-This repo is a **derived scraper** generated from the [epam-systems-international-srl-nodejs-scraper](https://github.com/sebiboga/epam-systems-international-srl-nodejs-scraper) template.
+This repo is a **derived scraper** generated from the [epam-systems-international-srl-nodejs-scraper](https://github.com/peviitor-scrapers/epam-systems-international-srl-nodejs-scraper) template.
 
 - **All company-specific identity lives in `config/company.json`** (CIF, brand, legalName, URLs, API params). Read from `config/company.js` in Node code, or via `jq` in workflows. Never hardcode in source files.
 - **The scraping logic in `index.js`** uses cheerio HTML parsing on jobRapid.ro. The output shape (`mapToJobModel`, `transformJobsForSOLR`) stays uniform across all scrapers.
