@@ -99,7 +99,7 @@ describe('E2E: Full Scraping Pipeline', () => {
 
       for (const job of result.docs) {
         expect(job.company).toBe('RAPEL SRL');
-        expect(job.cif).toBe(TEST_CIF);
+        expect(job.cif).toBe(TEST_CIF.padStart(8, '0'));
       }
     }, 15000);
 

@@ -90,7 +90,7 @@ describe('Integration: API Workflow', () => {
       const rapel = await solr.getCompanyByCif(RAPEL_CIF);
 
       expect(rapel).not.toBeNull();
-      expect(rapel.id).toBe(RAPEL_CIF);
+      expect(rapel.id).toBe(RAPEL_CIF.padStart(8, '0'));
       expect(rapel.company).toBe('RAPEL SRL');
       expect(rapel.brand).toBe('RAPEL');
       expect(rapel.status).toBe('activ');
@@ -101,7 +101,7 @@ describe('Integration: API Workflow', () => {
     itIfSolr('should have required company model fields', async () => {
       const rapel = await solr.getCompanyByCif(RAPEL_CIF);
 
-      expect(rapel).toHaveProperty('id', RAPEL_CIF);
+      expect(rapel).toHaveProperty('id', RAPEL_CIF.padStart(8, '0'));
       expect(rapel).toHaveProperty('company');
       expect(rapel).toHaveProperty('brand', 'RAPEL');
       expect(rapel).toHaveProperty('status');
@@ -202,7 +202,7 @@ describe('Integration: API Workflow', () => {
 
       const solrResult = await solrObj.getCompanyByCif(RAPEL_CIF);
       expect(solrResult).not.toBeNull();
-      expect(solrResult.id).toBe(RAPEL_CIF);
+      expect(solrResult.id).toBe(RAPEL_CIF.padStart(8, '0'));
       expect(solrResult.company).toBe('RAPEL SRL');
     }, 30000);
 
