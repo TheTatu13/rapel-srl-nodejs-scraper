@@ -295,7 +295,8 @@ async function main() {
     const updatedExisting = addCifToExistingJobs(legitExisting, cif, COMPANY_NAME);
     const newJobs = portalJobs.map(job => mapToJobModel(job, cif));
 
-    const allJobs = [...updatedExisting, ...newJobs];
+    // Fresh scrape first: the dedup below keeps the first copy of a URL, so re-scraped jobs must win over stale stored ones.
+    const allJobs = [...newJobs, ...updatedExisting];
     console.log(`Total jobs to upsert: ${allJobs.length} (${updatedExisting.length} existing + ${newJobs.length} new)`);
 
     const seenUrls = new Set();
