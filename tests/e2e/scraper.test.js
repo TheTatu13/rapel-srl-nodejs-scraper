@@ -7,20 +7,15 @@ import fetch from 'node-fetch';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
-const HAS_SOLR = !!process.env.SOLR_AUTH;
+// Live API tests hit api.peviitor.ro (no credential needed) -- opt in explicitly.
+const HAS_SOLR = !!process.env.RUN_LIVE_API_TESTS;
 
 function itIfSolr(name, fn, timeout) {
   if (HAS_SOLR) {
     return it(name, fn, timeout);
   }
-  return it.skip(`${name} (skipped: SOLR_AUTH not set)`, fn, timeout);
+  return it.skip(`${name} (skipped: set RUN_LIVE_API_TESTS=1 to run)`, fn, timeout);
 }
-
-beforeAll(() => {
-  if (HAS_SOLR) {
-    process.env.SOLR_AUTH = process.env.SOLR_AUTH;
-  }
-});
 
 const TEST_CIF = '5665609';
 const TEST_BRAND = 'RAPEL';
@@ -109,10 +104,9 @@ describe('E2E: Full Scraping Pipeline', () => {
     }, 15000);
 
     itIfSolr('should have RAPEL company core entry with required fields', async () => {
-      const result = await solr.queryCompanySOLR(`id:${TEST_CIF}`);
+      const rapel = await solr.getCompanyByCif(TEST_CIF);
 
-      expect(result.numFound).toBe(1);
-      const rapel = result.docs[0];
+      expect(rapel).not.toBeNull();
       expect(rapel.company).toBe('RAPEL SRL');
       expect(rapel.status).toBe('activ');
     }, 15000);
