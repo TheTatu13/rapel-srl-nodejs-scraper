@@ -149,7 +149,7 @@ describe('Integration: API Workflow', () => {
       expect(job).toHaveProperty('url');
       expect(job).toHaveProperty('title');
       expect(job).toHaveProperty('company', 'RAPEL SRL');
-      expect(job).toHaveProperty('cif', RAPEL_CIF);
+      expect(job).toHaveProperty('cif', RAPEL_CIF.padStart(8, '0'));
       expect(job).toHaveProperty('status');
     }, 15000);
 
