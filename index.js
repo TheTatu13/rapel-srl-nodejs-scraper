@@ -162,6 +162,14 @@ function extractLocationFromTitle(title) {
   return null;
 }
 
+// jobRapid job URLs end in "-in-<city-slug>-<id>.html" (e.g. ...-in-alba-iulia-1591653.html): use it when the
+// title carries no city, so those jobs are not published without a location.
+function extractLocationFromUrl(url) {
+  const m = (url || '').match(/-in-([a-z-]+)-\d+\.html$/);
+  if (!m) return null;
+  return m[1].split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
 function mapToJobModel(rawJob, cif, companyName = COMPANY_NAME) {
   const now = new Date().toISOString();
 
@@ -172,6 +180,11 @@ function mapToJobModel(rawJob, cif, companyName = COMPANY_NAME) {
   const locationFromTitle = extractLocationFromTitle(rawJob.title);
   if (locationFromTitle && !location.includes(locationFromTitle)) {
     location.push(locationFromTitle);
+  }
+
+  if (!location.length) {
+    const locationFromUrl = extractLocationFromUrl(rawJob.url);
+    if (locationFromUrl) location.push(locationFromUrl);
   }
 
   const job = {
@@ -346,7 +359,7 @@ async function main() {
   }
 }
 
-export { mapToJobModel, transformJobsForSOLR, searchAllPortals };
+export { mapToJobModel, transformJobsForSOLR, searchAllPortals, extractLocationFromUrl };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   main();

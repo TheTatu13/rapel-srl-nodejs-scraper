@@ -88,4 +88,18 @@ describe('index.js Component Tests', () => {
       expect(result.url).toBe('https://test.com/1');
     });
   });
+
+  describe('location from jobRapid URL', () => {
+    it('derives the city from the URL slug when the title has none', () => {
+      const job = index.mapToJobModel({
+        url: 'https://www.jobrapid.ro/locuri-de-munca/functionar-administrativ-in-alba-iulia-1591653.html',
+        title: 'Functionar Administrativ'
+      }, '5665609');
+      expect(job.location).toEqual(['Alba Iulia']);
+    });
+
+    it('returns null for URLs without a city slug', () => {
+      expect(index.extractLocationFromUrl('https://mediere.anofm.ro/app/module/mediere/job/3359947')).toBeNull();
+    });
+  });
 });
