@@ -10,11 +10,11 @@
 | Location | JUD. ALBA, SAT RĂHĂU MUN. SEBEŞ, STR. PRINCIPALA, NR.1 |
 | Website | [https://www.rapel.biz](https://www.rapel.biz) |
 | Careers | [https://www.rapel.biz](https://www.rapel.biz) |
-| Last Scraped | 2026-10-02 |
+| Last Scraped | 2026-10-03 |
 
 ## Current Job Listings (4)
 
-_Generated: 2026-10-02T23:31:37.970Z_
+_Generated: 2026-10-03T00:15:44.460Z_
 
 ### Muncitor Necalificat La Asamblarea, Montarea Pieselor
 
