@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { validateAndGetCompany } from "./company.js";
 import { querySOLR, deleteJobsByCIF, upsertJobs, upsertCompany } from "./solr.js";
 import { generateJobsMarkdown } from "./src/markdown-generator.js";
+import { validateByHead } from "./src/job-validator.js";
 import companyConfig from "./config/company.js";
 
 const COMPANY_CIF = companyConfig.cif;
@@ -66,11 +67,24 @@ async function searchJobRapid(brand) {
     }
   }
 
-  return jobs;
+  // jobRapid.ro lists expired ads too (they answer 200): drop them before they are ingested.
+  const checks = await Promise.all(jobs.map(j => validateByHead(j.url)));
+  const live = jobs.filter((j, i) => checks[i].status !== "expired");
+  if (live.length < jobs.length) console.log(`  Dropped ${jobs.length - live.length} expired jobRapid.ro ad(s)`);
+  return live;
 }
 
 function isKnownGoodUrl(url) {
   return url.includes('mediere.anofm.ro') || url.includes('jobrapid.ro') || url.includes('anofm.ro');
+}
+
+// jobRapid.ro keeps expired ads online (HTTP 200): drop stored jobs whose ad has expired.
+async function dropExpiredJobRapid(jobs) {
+  const rapid = jobs.filter(j => /jobrapid\.ro\//i.test(j.url));
+  const checks = await Promise.all(rapid.map(j => validateByHead(j.url)));
+  const expired = new Set(rapid.filter((j, i) => checks[i].status === "expired").map(j => j.url));
+  if (expired.size) console.log(`Dropping ${expired.size} expired stored jobRapid.ro ad(s)`);
+  return jobs.filter(j => !expired.has(j.url));
 }
 
 function filterLegitimateJobs(jobs) {
@@ -289,7 +303,7 @@ async function main() {
     }
 
     console.log(`\n=== Step 4: Filter and merge jobs ===`);
-    const legitExisting = filterLegitimateJobs(existingJobs);
+    const legitExisting = testOnly ? filterLegitimateJobs(existingJobs) : await dropExpiredJobRapid(filterLegitimateJobs(existingJobs));
     console.log(`Existing jobs kept (known-good sources): ${legitExisting.length} (rejected ${existingJobs.length - legitExisting.length})`);
 
     const updatedExisting = addCifToExistingJobs(legitExisting, cif, COMPANY_NAME);

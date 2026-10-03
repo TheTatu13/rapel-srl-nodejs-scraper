@@ -19,8 +19,12 @@ export const DEFAULT_EXPIRED_KEYWORDS = [
   "this vacancy is no longer available",
   "no longer accepting applications",
   "this position has been filled",
-  "job expired"
+  "job expired",
+  "titlu-anunt-expired" // jobrapid.ro: expired ads answer 200, the title carries this class
 ];
+
+// jobrapid.ro keeps expired ads online (HTTP 200) and only marks the title.
+export const JOBRAPID_EXPIRED_MARKER = "titlu-anunt-expired";
 
 const DEFAULT_USER_AGENT = "job_seeker_ro_spider";
 const DEFAULT_TIMEOUT_MS = 15000;
@@ -36,6 +40,13 @@ export async function validateByHead(url, { userAgent = DEFAULT_USER_AGENT } = {
       headers: { "User-Agent": userAgent },
       redirect: "follow"
     });
+    if (res.ok && /jobrapid\.ro\//i.test(url)) {
+      const page = await fetch(url, { headers: { "User-Agent": userAgent }, redirect: "follow" });
+      const html = await page.text().catch(() => "");
+      if (html.includes(JOBRAPID_EXPIRED_MARKER)) {
+        return { url, status: "expired", httpStatus: res.status, title: null, error: null, reason: "soft-expired" };
+      }
+    }
     return {
       url,
       status: res.ok ? "active" : "expired",

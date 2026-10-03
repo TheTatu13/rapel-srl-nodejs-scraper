@@ -40,6 +40,21 @@ describe('src/job-validator.js', () => {
       expect(result.error).toBe('network down');
     });
 
+    it('treats a jobrapid.ro ad marked expired as expired even when HTTP is 200', async () => {
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 200 });
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 200, text: async () => "<h1 class='titlu-anunt titlu-anunt-expired'>Expirat - X</h1>" });
+      const result = await validator.validateByHead('https://www.jobrapid.ro/locuri-de-munca/x-in-alba-iulia-1.html');
+      expect(result.status).toBe('expired');
+      expect(result.reason).toBe('soft-expired');
+    });
+
+    it('keeps a live jobrapid.ro ad active', async () => {
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 200 });
+      mockFetch.mockResolvedValueOnce({ ok: true, status: 200, text: async () => "<h1 class='titlu-anunt'>Tehnician</h1>" });
+      const result = await validator.validateByHead('https://www.jobrapid.ro/locuri-de-munca/y-in-alba-iulia-2.html');
+      expect(result.status).toBe('active');
+    });
+
     it('issues a HEAD request', async () => {
       mockFetch.mockResolvedValueOnce({ ok: true, status: 200 });
       await validator.validateByHead('https://example.com/job/4');
